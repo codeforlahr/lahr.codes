@@ -5,4 +5,6 @@ pre {
   margin-bottom: var(--spacing-medium);
   background-color: var(--grey-1);
   padding: var(--spacing-small);
+  font-family: monospace;
+  font-size: var(--font-size-s);
 }
