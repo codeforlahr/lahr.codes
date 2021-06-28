@@ -4,7 +4,7 @@ type: projekt
 layout: projekt
 date: 2020-11-22T20:31:58+01:00
 image: img/20191005_102842.jpg
-description: Veranstaltung der senseBox Workshops im Januar 2021 im Schlachthof
+description: Veranstaltung der senseBox Workshops 2021 im Schlachthof
 ---
 Autor: [David](https://github.com/synolus-david)
 Stand: 28.06.2021
