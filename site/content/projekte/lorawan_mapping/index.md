@@ -3,7 +3,7 @@ title: LoRaWAN Mapping
 type: projekt
 layout: projekt
 date: 2020-11-22T01:53:22.128+01:00
-image: img/lorawan-mapping-karte.png
+image: lorawan-mapping-karte.png
 description: Hast du zuhause LoRaWAN-Empfang?
 ---
 Autor: [David](https://github.com/synolus-david)

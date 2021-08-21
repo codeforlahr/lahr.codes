@@ -3,11 +3,11 @@ title: Programmier-Workshops 2021 im Schlachthof!
 type: projekt
 layout: projekt
 date: 2020-11-22T20:31:58+01:00
-image: img/20191005_102842.jpg
-description: Veranstaltung der senseBox Workshops 2021 im Schlachthof
+image: "mcu.png"
+description: Veranstaltung der senseBox Workshops im Januar 2021 im Schlachthof
 ---
 Autor: [David](https://github.com/synolus-david)
-Stand: 28.06.2021
+Stand: 23.11.2020
 
 Heiko vom Schlachthof hat uns eingeladen Programmierworkshops am Schlachthof durchzuführen.Die Veranstaltung richtet sich an Kinder und Jugendliche im Alter von 12-17 Jahren, welche sich für die Themen Programmieren, Coden und Elektronik interessieren. Vorkenntnisse in den Themen werden nicht benötigt. 
 
@@ -27,7 +27,7 @@ Die [senseBox](https://sensebox.de) ist ein einfach zu programmierender Mikrocon
 
 **Termine:**
 
-24.9.2021 den 01.10.2021 und den 08.10.2021 von 14-16 Uhr (die Termine bauen aufeinander auf)
+22.01.2021 den 29.01.2021 und den 05.02.2021 (die Termine bauen aufeinander auf)
 
 **Anmeldung:**
 

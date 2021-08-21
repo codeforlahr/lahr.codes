@@ -5,3 +5,5 @@ site/data/webpack.json
 yarn-error.log
 .idea
 package-lock.json
+public/
+site/resources/_gen/
