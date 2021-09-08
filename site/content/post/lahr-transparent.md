@@ -3,16 +3,19 @@ title: "Meine Stadt Transparent" für Lahr und wie man es benutzt!
 type: post
 date: 2021-08-28T13:07:00.000Z
 description: Anleitung zur Benutzung der Website und Hintergrunde zum Projekt und den Daten
-image: img/TODO.png
+image: img/mstlahr.png
 ---
 Autor: [David](https://github.com/synolus-david)
-Stand: 28.08.2021
+Stand: 08.09.2021
 
 ## Was ist "Meine Stadt Transparent"?
 
-"Meine Stadt Transparent" ermöglicht es, die öffentlichen Informationen aus dem [städtischen Ratsinformationssystem](https://lahr.ratsinfomanagement.net/startseite) einfacher zu lesen und zu durchsuchen. 
+"Meine Stadt Transparent" ermöglicht es, die öffentlichen Informationen aus dem [städtischen Ratsinformationssystem](https://lahr.ratsinfomanagement.net/startseite) einfacher zu lesen und zu durchsuchen. Es ermöglicht allen Nutzer und Nutzerinnen folgende Funktionen:
 
-- ToDo: Aufzählung Funktionen
+* Suchfunktion mit welcher alle Unterlagen und Ratsbeschlüsse durchsucht werden können
+* Eine Karte in welcher die Geschehnisse ortsbezogen dargestellt werden
+* Informationen zu Personen und Gremien
+* Übersicht zu kommenden Terminen und Sitzungen
 
 ## Wer hat "Meine Stadt Transparent" entwickelt und woher kommen die Daten?
 
@@ -20,9 +23,7 @@ Die Webseite kann man sich als Maske vorstellen, welche Daten über eine [Schnit
 
 ## Wie benutze ich die Seite?
 
-
-## Wie geht es mit "Meine Stadt Transparent" weiter?
-
+Das Projekt ist komplett offen entwickelt und kann kostenlos und ohne Anmeldung genutzt werden. Die Seite kann über den Link https://transparent.lahr.codes/ erreicht werden.
 
 Viel Spaß beim Durchsuchen!
 
