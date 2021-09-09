@@ -1,9 +1,10 @@
 ---
-title: "Meine Stadt Transparent" für Lahr und wie man es benutzt!
-type: post
+title: "Meine Stadt Transparent für Lahr und wie man es benutzt!"
+type: projekt
+layout: projekt
 date: 2021-08-28T13:07:00.000Z
+image: mstlahr.png
 description: Anleitung zur Benutzung der Website und Hintergrunde zum Projekt und den Daten
-image: img/mstlahr.png
 ---
 Autor: [David](https://github.com/synolus-david)
 Stand: 08.09.2021
