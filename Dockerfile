@@ -1,4 +1,4 @@
-FROM node:latest
+FROM node:14
 
 # Adding `nodemon` as a global so it's available to the `CMD` instruction below
 RUN npm install -g nodemon
