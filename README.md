@@ -20,9 +20,9 @@ cd <checked-out repository>
 docker build -t lahr.codes .
 ```
 
-Start the docker container. This automatically mounts your working directory through the option ``-v `pwd`:/usr/src/app``:
+Start the docker container. This automatically mounts your working directory through the option ``-v `pwd`:/usr/src/app/site``:
 ```bash
-docker run -ti --name lahr.codes -v `pwd`:/usr/src/app -p 3000:3000 -d  lahr.codes:latest
+docker run -ti --name lahr.codes -v `pwd`/site:/usr/src/app/site -p 3000:3000 -d  lahr.codes:latest
 ```
 
 Browse to [0.0.0.0:3000](0.0.0.0:3000)
