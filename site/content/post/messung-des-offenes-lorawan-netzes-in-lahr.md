@@ -120,7 +120,7 @@ Das Wichtigste was wir übertragen wollen, ist unsere aktuelle Position, damit s
 Suche den Block `Latitude, Longitude, Altidude, Channel` unter "Lora", "Cayenne LPP".
 Füge anschließend den `GPS-Module` Block (unter "Sensors") ein und wähle den jeweiligen Wert aus. Der Channel kann auf 1 gesetzt bleiben.
 
-![Der Block für den TTN-Mapper](img/loop-ttnmapper.svg)
+![Der Block für den TTN-Mapper](img/loop-ttnmapper_v3.png)
 
 **Statusanzeigt mit dem OLED-Display**
 
