@@ -6,8 +6,10 @@ description: Anleitung zur Erstellung eines LoRaWAN-Reichweite Mappers mit The
   Things Network.
 image: img/radiusmap-lora-1.5km.png
 ---
-Autor: [David](https://github.com/synolus-david)
-Stand: 11.11.2020
+Autor: [David](https://github.com/synolus-david), [Jonas](https://github.com/jfehre) 
+Veröffentlicht: 11.11.2020  
+
+*Update 17.11.2021: Anleitung und Bilder von TTN v2 auf TTN v3 angepasst.*
 
 ## Was ist LoRaWAN, TTN und warum gibt es das in Lahr?
 
@@ -37,72 +39,75 @@ Das LoRa-Bee steckt man auf XBee1 auf, sodass die Antenne des Bees vom Mikrocont
 
 ### 1. *Application und Device anlegen*
 
-Gehe auf deine [TTN-Console](https://console.thethingsnetwork.org/) und lege eine neue Applikation an (Falls du noch kein Konto hast, musst du dir noch eines erstellen. Du gelangst auf eine Übersicht, mit allen deiner Applikationen. Dort kannst du auf "add application" klicken um eine neue Applikation anzulegen. Bennene deine "Application ID" (z.B. ttn-mapper-real) und beschreibe deine Applikation und klicke dann auf "Add Application".
+Gehe auf deine [TTN-Console](https://console.thethingsnetwork.org/) und wähle das Netzwerk Cluster in deiner Nähe aus (z.B. eu1).
+Falls du noch kein Konto hast, musst du dir noch eines erstellen. Gehe auf **Go to applications** um eine neue Applikation zu erstellen 
+Du gelangst auf eine Übersicht, mit allen deinen Applikationen. Dort kannst du auf **add application** klicken um eine neue Applikation anzulegen. 
+Bennene deine "Application ID" (z.B. ttn-mapper-lahr-codes), füge einen Namen ein und beschreibe deine Applikation. Klicke dann auf **Create application**.
 
-![Erster Schritt bei TTN ist das anlegen einer Applikation](img/application-anlegen.png)
+![Erster Schritt bei TTN ist das anlegen einer Applikation](img/application-anlegen_v3.png)
 
-Dann erhälst du eine Übersicht mit deiner “Application ID” und die “Application EUIS”, welche du später brauchst. Nun musst du in deiner neuen Application noch ein Device hinzufügen. Gehe dafür unter der Rubrik “Devices” auf “register device”. Gib deinem Device eine “Device ID” ((z.B. ttn-mapper-real-device). Durch klicken auf die geschlungenen Pfeile (“generate”) bei “DeviceEUI” wird dir automatisch einen DeviceEUI generiert.
+Dann erhälst du eine Übersicht deiner neuen Applikation. Nun musst du noch ein Endgerät hinzufügen. Gehe dafür unter der Rubrik **End devices** und füge ein neues Endgerät mit **Add end device** hinzu.
+Wähle oben **Manually** aus. Wähle als "Frequency plan" *Europe 863-870 MHz (SF9 for RX2 - recommended)* aus, als "LoRaWAN version" *MAC V1.0.2* und bei "Regional Parameters Version" die Option *PHY V1.0.2 REV A*
 
-![Übersicht](img/device-anlegen.png)
+Als nächstes müssen die EUIs eingetragen werden.. Durch klicken auf die geschlungenen Pfeile (**Generate**) bei “DevEUI” wird dir automatisch einen DeviceEUI generiert.
+Die "AppEUI" kann mit Nullen gefüllt werden und der "AppKey" kann auch automatisch generiert werden, über die Knöpfe.
+Danach landest du wieder in einer Übersicht, diesmal für die Device Einstellungen.
 
-Danach landest du wieder in einer Übersicht, diesmal für die Device Einstellungen. Schließlich musst du noch die "Activation Method" umstellen. Als Standard ist dort "OTAA" ausgewählt, für den TTN-Mapper möchten wir aber über "ABP" schicken. Gehe dafür in der "Device Overview" auf "Settings" und wähle dort unter "Activation Method" "ABP" statt "OTAA" aus. Vergesse nicht danach auf "save" zum speichern der Einstellung zu klicken. 
+![Übersicht](img/device-anlegen_v3.png)
 
-![Änderung der "Activation Method" auf "ABP"](img/abp-auswählen.png)
-
-Nach ändern der Activation Method landest du wieder im "Device Overview". Man sieht schon, dass nach der Umstellung drei neue Werte angezeigt werden die wir gleich für dein Programm Code brauchen, "Device Adress", "Network Session Key" und "App Session Key". 
-
-![Nach Änderung der "Activation Method" auf "ABP"](img/device-overview.png)
 
 ### 2. *Integration anlegen*
 
-Da wir die Daten später an den TTN Mapper senden möchten, musst Du außerdem eine “Integration” hinzufügen. Diese findest du oben in deinem Menü. Klicke darauf und klicke dann gleich auf den Button mit der Aufschrift “Add Integration”. Dort hast du dann die Möglichkeit, verschiedenste Integrations hinzuzufügen, um die Daten von TTN an andere Services weiterzuleiten. Wähle dort den “TTN Mapper” aus. Gib nun eine “Process ID” an, die du frei wählen kannst (z.B. ich wähle den gleichen Namen wie die Application). Gib auch deine E-Mail Adresse an, für den Fall das Rückfrage zu deinen Daten entstehen. 
+Da wir die Daten später an den TTN Mapper senden möchten, musst Du außerdem eine “Integration” hinzufügen. 
+Diese findest du links in deinem Menü unter **Integrations**. Klicke auf **Webhooks** und füge eine neue Integration mit **Add webhook** hinzu.
+Dort hast du dann die Möglichkeit, verschiedenste Integrations hinzuzufügen, um die Daten von TTN an andere Services weiterzuleiten. 
+Wähle dort den “TTN Mapper” aus. Gib nun eine “Webhook ID” an, die du frei wählen kannst. Gib auch deine E-Mail Adresse an, für den Fall das Rückfrage zu deinen Daten entstehen. 
 
-Dann kommt die Entscheidung, ob du deine Daten als Experiment verwenden möchtest, oder einfach nur Mappen willst. Deinem Experiment kannst du dort also einen Namen geben. Wenn du den Experiment Namen auslässt dann bist du nicht mehr in der Lage deine eigenen Messungen auf dem TTN Mapper zu identifizieren. Klicke dann auf “Add Integration”.
+Dann kommt die Entscheidung, ob du deine Daten als Experiment verwenden möchtest, oder einfach nur Mappen willst. 
+Deinem Experiment kannst du dort also einen Namen geben. 
+Wenn du den Experiment Namen auslässt dann bist du nicht mehr in der Lage deine eigenen Messungen auf dem TTN Mapper zu identifizieren. 
+Klicke dann auf **Create ttn mapper webhook**.
 
-!["Die ausgefüllte Integration für den TTN-Mapper"](img/integration-anlegen.png)
+!["Die ausgefüllte Integration für den TTN-Mapper"](img/integration-anlegen_v3.png)
 
-### 3. "Payload Formats angeben"
+### 3. *Payload Formats angeben*
 
-Im letzten Schritt müssen wir noch ein sogenanntes Decoding-Profil anlegen. Dieses Profil decodiert im Prinzip die  Bytes welche später vom Device geschickt werden zu den ursprünglichen Werten zurück. Wenn dich die Theorie dahinter interessiert, kannst du das [hier](https://docs.sensebox.de/blockly/blockly-web-lora/) nachlesen. Klicke dafür auf "Payload Formats", dort findest du eine Textbox um Code einzufügen. Wie bei vielen Open-Source Projekten, findeten man im Internet oftmals schon fertige Decoding Profile, die man dann dort einfach einfügen kann. Wir nutzen hier die Arbeit von [Felix Erdmann](https://gist.github.com/felixerdy/f959ac03df98c6947f1c7f35d537f23e). Kopiere also seinen Code einfach in das Textfeld und klicke danach auf "speichern" 
+Im letzten Schritt müssen wir noch ein sogenanntes Decoding-Profil anlegen. 
+Dieses Profil decodiert im Prinzip die  Bytes welche später vom Device geschickt werden zu den ursprünglichen Werten zurück. 
+Wenn dich die Theorie dahinter interessiert, kannst du das [hier](https://docs.sensebox.de/blockly/blockly-web-lora/) nachlesen. 
+Klicke dafür auf **Payload formatters** links im Menü und anschließend auf **Uplink**. 
+In diesem Tutorial wird das Cayenne Payload Format genutzt. Wähle daher als "Formatter type" *Cayenne LPP*. Speicher die Änderung mit **Save changes**.
 
-```javascript
-function Decoder(b, port) {
-  var lat = (b[0] | (b[1] << 8) | (b[2] << 16) | (b[3] << 24)) / 10000000;
-  var lon = (b[4] | (b[5] << 8) | (b[6] << 16) | (b[7] << 24)) / 10000000;
-  var alt = (b[8] | (b[9] << 8)) / 10; // in m
-  var pdop = (b[10] | (b[11] << 8)) / 100;
 
-  return {
-    latitude: lat,
-    longitude: lon,
-    altitude: alt,
-    hdop: pdop,
-  };
-}
-```
-
-![Einfügen des Decoding Profils](img/decoding-anlegen.png)
+![Einfügen des Decoding Profils](img/decoding-anlegen_v3.png)
 
 ### Programmieren des Mikrocontrollers
 
-Der einfachste Weg die senseBox zu Programmieren ist mit Hilfe der visuellen Programmierumgebung [Blockly](https://blockly.sensebox.de/ardublockly/?board=sensebox-mcu). Theoretisch kann man aber auch mit der Arduino IDE arbeiten. Die Schwierigkeit der Programmierung ist etwas fortgeschritten, trotzdem kann jede(r) die folgenden Codes einfach nachklicken. Wir dokumentieren die Codes in der englischen Sprache, es gibt aber auch die Möglichkeit auf Deutsch umzustellen. Blockly ist sehr intuitiv zu verstehen. Einen Code baust du immer durch "Drag&Drop" aus verschiedenen einzelnen Blöcken. An der linken Seite finden sich alle vorgefertigten Blöcke mit denen du deinen Code bauen kannst und oben rechts findest du Funktionen und Features. 
+Der einfachste Weg die senseBox zu Programmieren ist mit Hilfe der visuellen Programmierumgebung [Blockly](https://blockly.sensebox.de/ardublockly/?board=sensebox-mcu). 
+Theoretisch kann man aber auch mit der Arduino IDE arbeiten. Die Schwierigkeit der Programmierung ist etwas fortgeschritten, trotzdem kann jede(r) die folgenden Codes einfach nachklicken. 
+Wir dokumentieren die Codes in der englischen Sprache, es gibt aber auch die Möglichkeit auf Deutsch umzustellen. 
+Blockly ist sehr intuitiv zu verstehen. Einen Code baust du immer durch "Drag&Drop" aus verschiedenen einzelnen Blöcken. 
+An der linken Seite finden sich alle vorgefertigten Blöcke mit denen du deinen Code bauen kannst und oben rechts findest du Funktionen und Features. 
 
 ### 4. "Initialisierung"
 
-Blockly ist der Arduino Programmiersprache nachempfunden und besteht aus einer `setup()` und einer `loop()` Abschnitt im Code. im `setup()` werden Funktionen definiert die beim Start des Mikrocontrollers ausgeführt werden sollen. 
+Blockly ist der Arduino Programmiersprache nachempfunden und besteht aus einer `setup()` und einer `loop()` Abschnitt im Code. 
+Im `setup()` werden Funktionen definiert die beim Start des Mikrocontrollers ausgeführt werden sollen. 
 
-Hier möchten wir nun, dass sich unser Mikrocontroller mit TTN verbindet. Dazu braucht man verschiedene Keys aus deinem Device, welche du in der Übersicht deiner TTN Konsole findest. In Blockly klickst du auf "LoRa" und dann auf "Activation" und ziehst den Block mit dem Namen `Initialize LoRa (ABP)` auf die Programmierfläche in den `setup()` Abschnitt. Hier hast du die Möglichkeit 4 Felder auszufüllen.
+Hier möchten wir nun, dass sich unser Mikrocontroller mit TTN verbindet. Dazu braucht man verschiedene Keys aus deinem Device, welche du in der Übersicht deines Gerätes unter **End devices** in der TTN Konsole findest. 
+In Blockly klickst du auf "Web", "LoRa" und dann auf "Activation" und ziehst den Block mit dem Namen `Initialize LoRa (OTAA)` auf die Programmierfläche in den `setup()` Abschnitt. 
+Hier hast du die Möglichkeit 4 Felder auszufüllen.
 
-> Falls in Eurer TTN Konsole die beschriebenen Begriffe nicht auftauchen, müsst ihr die `Activation Method` von OTAA auf ABP umstellen wie weiter oben beschrieben ;-) 
+> Beim Kopieren der EUIs und des Keys muss man darauf achten, das richtige Format (lsb, msb) zu nutzen. Außerdem muss man die geschweiften Klammern { und } selbst vor bzw. hinter die Hexadezimalzahlen setzen, da diese aktuell nicht mitkopiert werden 
 
-1. in das Feld `Network Session Key (msb)` kopierst du den Code aus deiner Device Übersicht. Bevor du diesen kopierst: **Ändere das Format des Codes auf msb durch klicken auf das "<>" Symbol**
-2. in das Feld `App Session Key (msb)` kopierst du den Code aus deiner Device Übersicht. Bitte ändere auch dort das Format auf msb. 
+1. in das Feld `Device EUI (lsb)` kopierst du den Code aus deiner Device Übersicht. Bevor du diesen kopierst: **Ändere das Format des Keys auf Hexadezimal durch klicken auf das "<>" Symbol. Nutze anschließend die kleinen Pfeile ⇆ im Textfeld um von msb auf lsb zu wechseln**
+2. in das Feld `Application EUI (lsb)` kopierst du den Code aus deiner Device Übersicht. Bitte ändere auch dort das Format auf lsb. 
 3. Die "Device Address" kannst du einfach so kopieren
 4. Ins letzte Feld kannst du eingeben wie oft Daten vom Device übertragen werden sollen. Da der Mapper später mobil genutzt werden soll, macht es Sinn hier ein kleineres Intervall einzutragen.
 
 Wenn du aber stationäre Devices aufbaust, solltest du immer längere Intervalle eingeben und dich an die [Fair Use Policy](https://www.thethingsnetwork.org/community/rhein-sieg/post/fair-use-policy-vom-nehmen-und-geben-bitte-danke) der TTN Community halten.
 
-![Block für die Initialisierung](img/setup-lora.svg)
+![Block für die Initialisierung](img/setup-lora_v3.png)
 
 ### 5. "Schleife"
 
@@ -110,13 +115,18 @@ Wenn du aber stationäre Devices aufbaust, solltest du immer längere Intervalle
 
 In der `loop()` Abschnitt des Codes kommen nun die Funktionen, die (solange das Board angeschalten ist) immer wieder wiederholt werden sollen. 
 
-Glücklicherweise gibt es in Blockly die Option einen Code Block für den TTN-Mapper, der einen Großteil der Programmierung schon vorgefertigt hast. Du findest in der Rubrik "LoRa" den "TTN Mapper"-Block. Das Wichtigste was wir übertragen wollen, ist unsere aktuelle Position, damit später auf dem TTN Mapper angezeigt wird, ob es an dieser Stelle ein LoRa-Signal gibt. In `latitude` `longitude` und `altitude` ist schon der jeweils der Block für den GPS Sensor eingefügt, mit dem jeweiligen Wert. Diesen Block findest du sonst unter "Sensoren". Danach ist noch ein pDOP Wert (Abkürzung für [Dilution of Precision](https://de.m.wikipedia.org/wiki/Dilution_of_Precision)), ein Maß für die Streubreite der Messwerte bei Satellitennaviagationssystemen eingefügen. Schließlich noch den sogenannten "Fix Type", ein Wert der Auskunft über die aktuelle Stärke des GPS Signals gibt. Am Anfang des Blocks, kannst du Einstellen, ab welcher Stärke des GPS-Signals Daten an LoRa geschickt werden sollen. Ausgewählt ist der Wert 3, also nur bei sehr guten GPS Signalen sollen Daten verschickt werden.
+Da wir in diesem Tutorial das Cayenne Payload Format für die Übertragung der Daten nutzen, wähle den Block `Send as Cayenne Payload` unter "Lora", "Cayenne LPP".
+Das Wichtigste was wir übertragen wollen, ist unsere aktuelle Position, damit später auf dem TTN Mapper angezeigt wird, ob es an dieser Stelle ein LoRa-Signal gibt.
+Suche den Block `Latitude, Longitude, Altidude, Channel` unter "Lora", "Cayenne LPP".
+Füge anschließend den `GPS-Module` Block (unter "Sensors") ein und wähle den jeweiligen Wert aus. Der Channel kann auf 1 gesetzt bleiben.
 
 ![Der Block für den TTN-Mapper](img/loop-ttnmapper.svg)
 
 **Statusanzeigt mit dem OLED-Display**
 
-Falls du einen zur senseBox passenden OLED-Display hast, kannst du auch diesen nutzen um dein GPS-Signal anzuzeigen. Nutze dazu den Block "Print on Display" und den "Show Measurements" Block welchen man nutzt um Sensorwerte anzuzeigen. Im folgenden zeigen wir die "latitude" und die "longitude" an. Erhälst du den Wert 0, hast du kein GPS-Empfang und musst etwas warten.
+Falls du einen zur senseBox passenden OLED-Display hast, kannst du auch diesen nutzen um dein GPS-Signal anzuzeigen. 
+Nutze dazu den Block `Print on Display` und den `Show Measurements` Block welchen man nutzt um Sensorwerte anzuzeigen. 
+Im folgenden zeigen wir die "latitude" und die "longitude" an. Erhälst du den Wert 0, hast du kein GPS-Empfang und musst etwas warten.
 
 > Vergiss nicht den Display im `status()` Abschnitt zu initialisieren!
 
@@ -124,35 +134,43 @@ Falls du einen zur senseBox passenden OLED-Display hast, kannst du auch diesen n
 
 ### 6. "Code Übertragen"
 
-Nun fehlt nur noch Code auf den Mikrocontroller zu übertragen. Oben rechts siehst du einen runden Knopf mit Zahnräder. Wenn du auf diesen Knopf drückst, werden die Blöcke "kompiliert" und es entsteht ein Code, welcher vom Mikrocontroller gelesen werden kann. Klickst du auf den Knopf, entsteht eine Datei im Format ".bin" welche in deinem Download Ordner landet.
+Nun fehlt nur noch Code auf den Mikrocontroller zu übertragen. Oben rechts siehst du einen roten, runden Knopf mit einem Haken. 
+Wenn du auf diesen Knopf drückst, werden die Blöcke "kompiliert" und es entsteht ein Code, welcher vom Mikrocontroller gelesen werden kann. 
+Klickst du auf den Knopf, entsteht eine Datei im Format ".bin" welche in deinem Download Ordner landet.
 
-Schließe jetzt die senseBox an deinen USB-Port an, und doppelklicke den roten Button auf dem Board um den "Lernmodus" zu aktivieren, wie auch im folgenden Video gezeigt wird.
-
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=jzlOJ7Zuqqw
-" target="_blank"><img src="http://img.youtube.com/vi/jzlOJ7Zuqqw/0.jpg" 
-alt="Übertragen des Codes" width="240" height="180" border="10" /></a>
+Schließe jetzt die senseBox an deinen USB-Port an, und doppelklicke den roten Button auf dem Board um den "Lernmodus" zu aktivieren, wie auch in diesem [Video](https://youtu.be/jzlOJ7Zuqqw) gezeigt wird.
 
 Dann kannst du den Code mit Drag&Drop auf dein Board laden und dein Mapper ist fertig.  Wenn du Probleme mit der Code Übertragung hast, kannst du auch nochmal [dieses Video](https://www.youtube.com/watch?v=f3UqvTFt7Ek&t=76s) anschauen.
 
 ### 7. "Funktioniert mein Mapper?"
 
-Wenn dein Mapper funktioniert, sammelst du Werte welche auf der Website https://ttnmapper.org/ angezeigt werden. Schaue in deiner Nachbarschaft ob du ein Gateway entdeckst und wo du Signale empfängst. Es lohnt sich generell immer, am Anfang erst ein Experiment anzulegen um nur die Daten deines Mappers zu sehen und zu testen ob alles funktioniert.
+Wenn dein Mapper funktioniert, sammelst du Werte welche auf der Website https://ttnmapper.org/ angezeigt werden. 
+Schaue in deiner Nachbarschaft, ob du ein Gateway entdeckst und wo du Signale empfängst. 
+Es lohnt sich generell immer, am Anfang erst ein Experiment anzulegen, um nur die Daten deines Mappers zu sehen und zu testen ob alles funktioniert.
 
 ![So sieht dein Experiment auf dem TTN-Mapper aus](img/experiment-mapper.png)
 
-Deinen persönlichen TTN Mapper findest Du dann unter dem Namen deines Experiments. Öffne 
-
->https://ttnmapper.org/experiments/?experiment=EXPERIMENT_NAME
-
-und ersetze EXPERIMENT_NAME mit dem Namen deines Experiments. Es dauert ein bisschen bis die senseBox GPS Daten empfängt. Zwischendurch kannst Du die Seite neu laden um die neuesten Messungen zu sehen.
+Deinen persönlichen TTN Mapper findest Du dann unter dem Namen deines Experiments. Wähle dazu **Advanced maps** und füge dein Experiment Namen in **Show Experiment Data** ein.
+Mit einem Klick auf **View Map** werden auf der Karte die Messpunkte von dir angezeigt.  
+Falls du zwischenzeitlich den Namen deines Experiments vergessen hast, kannst du diesen in der TTN Konsole unter **Webhooks** und dann bei deinem "TTN Mapper Webhook" bei "Additional headers" nachschauen.  
+Es dauert ein bisschen bis die senseBox GPS Daten empfängt. Zwischendurch kannst Du die Seite neu laden um die neuesten Messungen zu sehen oder auf dem Display nachschauen ob GPS Daten bereits empfangen wurden.
 
 ### 8. Hilfe
 
-Du kannst in der TTN Konsole nachschauen ob LoRa Daten bei TTN ankommen. Klicke in deiner Application auf den Data Tab und die neusten Nachrichten sollten nach kurzer Zeit auftauchen. Falls keine Nachrichten ankommen schau nochmal über deine Keys die du aus TTN-Console übertragen hast und insbesondere auf deren Format. Ansonsten könnte es sein, dass in deiner Umgebung kein LoRa Gateway in Reichweite ist.
+Du kannst in der TTN Konsole nachschauen ob LoRa Daten bei TTN ankommen. 
+Klicke in deiner Application auf **Live data** und ein `Forward join-accept message` sollte zu sehen sein, sobald sich das Gerät mit einem LoRa Gateway verbunden konnte. 
+Falls keine Nachrichten ankommen schau nochmal über deine Keys die du aus TTN-Console übertragen hast und insbesondere auf deren Format. 
+Ansonsten könnte es sein, dass in deiner Umgebung kein LoRa Gateway in Reichweite ist.
 
 >Es kann eine Weile dauern bis das GPS Modul Daten empfängt. Manchmal dauert es mehrere Stunden bei der ersten Nutzung.
 
-Wurden aber einmal Daten empfangen sollte es beim nächsten mal schneller funktionieren. Die Nutzung der Knopfzelle verbessert den GPS Empfang.
+Wurden aber einmal Daten empfangen, sollte es beim nächsten mal schneller funktionieren. Die Nutzung der Knopfzelle verbessert den GPS Empfang.  
+Manchmal hilft es auch den Sensor im Freien zu testen
+
+##### Es kommt nur Accept join-request in der TTN Konsole an
+
+Anscheinend kommt dies häufiger vor seit TTN V3, da es so aussieht als ob TTN länger benötigt um ein Endgerät ins Netzwerk aufzunehmen.
+Einfach das Gerät weiterlaufen lassen und warten. Sobald der erste Beitritt erfolgreich ist, sollte es danach wie gewohnt schnell gehen ([Quelle](https://forum.sensebox.de/t/ttn-v3-ausser-accept-join-request/1335/2))
 
 Generell Hilfe zur senseBox findest du außerdem in der [Dokumentation](https://docs.sensebox.de) des Mikrocontrollers oder mit Hilfe anderer Nutzer in diesem [Forum](https://forum.sensebox.de). 
 
