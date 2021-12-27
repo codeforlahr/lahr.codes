@@ -1,25 +1,18 @@
-FROM node:14
-
-# Adding `nodemon` as a global so it's available to the `CMD` instruction below
-RUN npm install -g nodemon
-
-# Copy over the host's project files
-COPY . /usr/src/app
-# This provides a starting point, but will later be overridden by `docker run -v...`
+FROM klakegg/hugo:ext-alpine
 
 # Use this app directory moving forward through this file
-WORKDIR /usr/src/app
+WORKDIR /usr/src/app/
 
-# PREPARE `NODE_MODULES`
-## Grab the `package.json` from the host and copy into `tmp`
-COPY package.json /tmp/package.json
+# We need npm for postcss and some of its plugins (See: https://gohugo.io/hugo-pipes/postcss/)
+RUN apk add --update npm
+RUN npm cache clean --force
+RUN npm install -g postcss-cli autoprefixer
+RUN npm install postcss-custom-media postcss-preset-env postcss-import
 
-## Use that to get `node_modules` set up
-RUN cd /tmp && npm install
+# Copy over the host's project files
+COPY . /usr/src/app/site
+# This provides a starting point, but will later be overridden by `docker run -v...`
 
-## Copy that resulting `node_modules` into the WORKDIR
-RUN cp -a /tmp/node_modules /usr/src/app/
-
-EXPOSE 3000
-CMD [ "npm", "start" ]
+EXPOSE 1313
+CMD [ "server", "-s", "./site" ]
 

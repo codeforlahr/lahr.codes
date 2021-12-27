@@ -1,0 +1,13 @@
+{{ define "main" }}
+
+{{ partial "jumbotron" (dict "imageUrl" .Params.image "title" .Title "subtitle" .Params.subtitle) }}
+
+{{ partial "short-md" .Params.blurb}}
+
+{{ partial "2-up" (dict "Page" . "Intro" .Params.intro ) }}
+
+{{ partial "text-and-image" .Params.ziele }}
+
+{{ partial "blog" . }}
+
+{{ end }}

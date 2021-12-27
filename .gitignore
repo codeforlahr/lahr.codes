@@ -1,9 +1,9 @@
-node_modules/
 dist/
-site/data/webpack.json
-/npm-debug.log
-yarn-error.log
 .idea
-package-lock.json
 public/
-site/resources/_gen/
+resources/_gen/
+.hugo_build.lock
+node_modules/
+
+# Local Netlify folder
+.netlify

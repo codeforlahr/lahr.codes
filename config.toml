@@ -1,2 +1,14 @@
+baseurl = "/"
 languageCode = "en-us"
-title = "My New Netlify Victor Hugo Site"
+languageLang = "de"
+title = "Homepage"
+
+# RSS, categories and tags disabled for an easy start
+# See configuration options for more details: 
+# https://gohugo.io/getting-started/configuration/#toml-configuration
+disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
+
+
+[security]
+  [security.funcs]
+    getenv = ['^HUGO_', '^CONTEXT$']

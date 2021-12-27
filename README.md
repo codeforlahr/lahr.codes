@@ -2,14 +2,19 @@
 
 The site is deployed to [lahr.codes](lahr.codes)
 The site is built with the static site generator Hugo.
-Furthermore the Netlify CMS system is included, to allow editing blog posts and pages without a hassle.
-
 
 ## Local Development
 
-Clone this repository, and run `yarn` or `npm install` from the new folder to install all required dependencies.
+1. Prerequisites are [hugo](https://gohugo.io/) and `npm`.
 
-Then start the development server with `yarn start` or `npm start`.
+2. clone this repository: `git clone https://github.com/codeforlahr/lahr.codes/`
+3. We need npm for postcss and some of its plugins (See: https://gohugo.io/hugo-pipes/postcss/)
+
+```bash
+npm install postcss-cli autoprefixer postcss-custom-media postcss-preset-env postcss-import
+```
+
+4. Start development server with: `hugo server`
 
 ### Alternative: Docker development environment
 
@@ -22,10 +27,10 @@ docker build -t lahr.codes .
 
 Start the docker container. This automatically mounts your working directory through the option ``-v `pwd`:/usr/src/app/site``:
 ```bash
-docker run -ti --name lahr.codes -v `pwd`/site:/usr/src/app/site -p 3000:3000 -d  lahr.codes:latest
+docker run -ti --name lahr.codes -v `pwd`/site:/usr/src/app/site -p 1313:1313 -d  lahr.codes:latest
 ```
 
-Browse to [0.0.0.0:3000](0.0.0.0:3000)
+Browse to [0.0.0.0:1313](0.0.0.0:1313)
 
 ## Layouts
 
@@ -53,23 +58,8 @@ If someone with npm experience, wants to fix this, feel free to do so.
 But I think gulp is no longer used in this template, and you'd have to use another tool.
 Currently the icons are loaded as simple svg files.
 
-## Deploy this website to Netlify
-
-Use our deploy button to get your own copy of the repository. 
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/codeforlahr/lahr.codes&stack=cms)
-
-This will setup everything needed for running the CMS:
-
-* A new repository in your GitHub account with the code
-* Full Continuous Deployment to Netlify's global CDN network
-* Control users and access with Netlify Identity
-* Manage content with Netlify CMS
-
-Once the initial build finishes, you can invite yourself as a user. Go to the Identity tab in your new site, click "Invite" and send yourself an invite.
 
 ## About the Theme 
 
 The Kaldi Theme templete from Netlify is used. 
-This is a small business template built with [Victor Hugo](https://github.com/netlify/victor-hugo) and [Netlify CMS](https://github.com/netlify/netlify-cms), designed and developed by [Darin Dimitroff](http://www.darindimitroff.com/), [spacefarm.digital](https://www.spacefarm.digital).
-
+This is a small business template built with [Victor Hugo](https://github.com/netlify/victor-hugo).
