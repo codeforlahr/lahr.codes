@@ -6,13 +6,12 @@
         {{ $originalImg := .Resources.GetMatch $original }}
         {{ if $originalImg }}
             {{ $thumbnailImg := $originalImg.Fit "800x400" }}
-            {{ $pathArr := split $original "." }}
-            {{ $pathLen := len $pathArr }}
-            {{ $ext := index $pathArr (sub $pathLen 1) }}
-            {{ if ne $ext "svg" }}
+            {{ if ne (path.Ext $original) ".svg" }}
                 {{ $thumbnailImg := $thumbnailImg.Resize "800x webp" }}
+                {{ printf `<img src="%s" alt="%s"  class="center db mb3">` $thumbnailImg.RelPermalink .Title | safeHTML }}
+            {{ else }}
+                {{ printf `<img src="%s" alt="%s"  class="center db mb3">` $thumbnailImg.RelPermalink .Title | safeHTML }}
             {{ end }}
-            {{ printf `<img src="%s" alt="%s"  class="center db mb3">` $thumbnailImg.RelPermalink .Title | safeHTML }}
         {{end}}
     {{end}}
     <p class="truncate">{{ .Description }}</p>
