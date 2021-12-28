@@ -4,7 +4,7 @@ type: post
 date: 2020-11-12T13:07:00.000Z
 description: Anleitung zur Erstellung eines LoRaWAN-Reichweite Mappers mit The
   Things Network.
-image: img/radiusmap-lora-1.5km.png
+image: images/radiusmap-lora-1.5km.png
 ---
 Autor: [David](https://github.com/synolus-david), [Jonas](https://github.com/jfehre) 
 Veröffentlicht: 11.11.2020  
@@ -17,7 +17,7 @@ Seit längerem faszinieren wir uns für das Thema LoRaWAN, bzw. insbesondere das
 
 Mittlweile konnten wir als Initiatoren gemeinsam mit der Stadt Lahr und der Badenova AG ein Konzept aufbauen, bei welchem insgesamt 6 LoRaWAN Gateways in Lahr aufgebaut. 
 
-![Erwartete Abdeckung des öffentlichen LoRaWAN Netzes in Lahr mit 2km je Gateway](img/radiusmap-lora-1.5km.png)
+![Erwartete Abdeckung des öffentlichen LoRaWAN Netzes in Lahr mit 2km je Gateway](radiusmap-lora-1.5km.png)
 
 ## Wo habe ich tatsächlich LoRaWAN Empfang?
 

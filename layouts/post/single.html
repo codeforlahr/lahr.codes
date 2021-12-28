@@ -8,7 +8,11 @@
     </div>
     <div class="cms mw6">
       <p>{{ .Description }}</p>
-      {{ if .Params.image }}<img src="{{ .Params.image }}" alt="{{ .Title }}" />{{ end }}
+
+      {{ if .Params.image }}
+        {{ $image := .Page.Resources.GetMatch .Params.image }}
+        <img src="{{ $image.RelPermalink }}" alt="{{ .Title }}" />
+      {{ end }}
       {{ .Content }}
     </div>
   </div>
