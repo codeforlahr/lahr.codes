@@ -10,13 +10,13 @@
       <p>{{ .Description }}</p>
 
       {{ if .Params.image }}
-        {{/*
         {{ $image := .Page.Resources.GetMatch .Params.image }}
+        {{/*
         {{ $resizeString := print $image.Width "x webp"}}
         {{ $image := $image.Resize $resizeString }}
         <img src="{{ $image.RelPermalink }}" alt="{{ .Title }}" />
         */}}
-        {{ partial "maybe-webp" (dict "src" .Params.image "Page" .Page) }}
+        {{ partial "maybe-webp" (dict "image" $image) }}
       {{ end }}
       {{ .Content }}
     </div>

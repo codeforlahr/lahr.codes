@@ -2,13 +2,13 @@
     {{ $pageBundlePath := path.Join "images/" (path.Base .Destination) }}
     {{ $image := $.Page.Resources.Match $pageBundlePath }}
     {{ if $image }}
-        {{/*
         {{ $image := $.Page.Resources.GetMatch $pageBundlePath }}
+        {{/*
         {{ $resizeString := print $image.Width "x webp"}}
         {{ $image := $image.Resize $resizeString }}
         <img src="{{ $image.RelPermalink }}" alt="{{ .Text }}" {{ with .Title}} title="{{ . }}"{{ end }} />
         */}}
-        {{ partial "maybe-webp" (dict "src" (path.Base .Destination) "Page" $.Page) }}
+        {{ partial "maybe-webp" (dict "image" $image) }}
     {{ else }}
         <img src="{{ .Destination | safeURL }}" alt="{{ .Text }}" {{ with .Title}} title="{{ . }}"{{ end }} />
         {{ .Destination | safeURL }}

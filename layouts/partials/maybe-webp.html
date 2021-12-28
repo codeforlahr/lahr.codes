@@ -1,17 +1,10 @@
-{{ $original := path.Join "images/" (path.Base .src) }}
-{{ $originalImg := .Page.Resources.GetMatch $original }}
-{{ if $originalImg }}
-    {{/* If a "Fit-String" was provided, fit the image to the specified size */}}
-    {{ $fittedImage := $originalImg }}
-    {{ if .Fit }} 
-        {{ $fittedImage = $originalImg.Fit .Fit }}
-    {{ end }}
+{{ if .image }}
     {{/* If the image is not a vector graphic, convert it to webp */}}
-    {{ if ne (path.Ext $original) ".svg" }}
-        {{ $resizeString := print $fittedImage.Width "x webp"}}
-        {{ $convertedImage := $fittedImage.Resize $resizeString }}
+    {{ if ne (path.Ext .image) ".svg" }}
+        {{ $resizeString := print .image.Width "x webp"}}
+        {{ $convertedImage := .image.Resize $resizeString }}
         {{ printf `<img src="%s" alt="%s"  class="center db mb3">` $convertedImage.RelPermalink .Title | safeHTML }}
     {{ else }}
-        {{ printf `<img src="%s" alt="%s"  class="center db mb3">` $fittedImage.RelPermalink .Title | safeHTML }}
+        {{ printf `<img src="%s" alt="%s"  class="center db mb3">` .image.RelPermalink .Title | safeHTML }}
     {{ end }}
 {{end}}

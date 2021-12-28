@@ -3,9 +3,9 @@
     {{ if .Params.Image }}
         {{ $original := path.Join "images/" (path.Base .Params.image) }}
         {{ $originalImg := .Resources.GetMatch $original }}
+        {{ $thumbnailImg := $originalImg.Fit "800x400" }}
         {{/*
             {{ if $originalImg }}
-            {{ $thumbnailImg := $originalImg.Fit "800x400" }}
             {{ if ne (path.Ext $original) ".svg" }}
                 {{ $thumbnailImg := $thumbnailImg.Resize "800x webp" }}
                 {{ printf `<img src="%s" alt="%s"  class="center db mb3">` $thumbnailImg.RelPermalink .Title | safeHTML }}
@@ -14,7 +14,7 @@
             {{ end }}
         {{end}}
         */}}
-        {{ partial "maybe-webp" (dict "src" .Params.image "Page" . "Fit" "800x400") }}
+        {{ partial "maybe-webp" (dict "image" $thumbnailImg) }}
     {{end}}
     <p class="truncate">{{ .Description }}</p>
     <a href="{{ .RelPermalink }}" class="no-underline br1 mb2 db">
