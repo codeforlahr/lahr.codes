@@ -1,9 +1,14 @@
 <p class="md__image">
     {{ $pageBundlePath := path.Join "images/" (path.Base .Destination) }}
-    {{ $pageBundleImage := $.Page.Resources.Match $pageBundlePath }}
-    {{ if $pageBundleImage }}
-        {{ $pageBundleImage := $.Page.Resources.GetMatch $pageBundlePath }}
-        <img src="{{ $pageBundleImage.RelPermalink }}" alt="{{ .Text }}" {{ with .Title}} title="{{ . }}"{{ end }} />
+    {{ $image := $.Page.Resources.Match $pageBundlePath }}
+    {{ if $image }}
+        {{/*
+        {{ $image := $.Page.Resources.GetMatch $pageBundlePath }}
+        {{ $resizeString := print $image.Width "x webp"}}
+        {{ $image := $image.Resize $resizeString }}
+        <img src="{{ $image.RelPermalink }}" alt="{{ .Text }}" {{ with .Title}} title="{{ . }}"{{ end }} />
+        */}}
+        {{ partial "maybe-webp" (dict "src" (path.Base .Destination) "Page" $.Page) }}
     {{ else }}
         <img src="{{ .Destination | safeURL }}" alt="{{ .Text }}" {{ with .Title}} title="{{ . }}"{{ end }} />
         {{ .Destination | safeURL }}
