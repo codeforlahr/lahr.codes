@@ -9,7 +9,7 @@ Urheber von Veröffentlichungen oder Änderungen können daher öffentlich nachv
 Angaben gemäß § 5 TMG
 
 Lucas Steinmann  
-Eichgarten 23  
+Am Kirchberg 10 
 77933 Lahr
 
 Vertreten durch:  
@@ -20,4 +20,4 @@ Kirchberg 13
 
 Kontakt:  
 Telefon: Wird bald hinzugefügt  
-E-Mail: lucas.steinamnn@preml.io
+E-Mail: info@lahr.codes
