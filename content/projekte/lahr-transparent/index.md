@@ -2,12 +2,14 @@
 title: „Meine Stadt Transparent“ für Lahr und wie man es benutzt!
 type: projekt
 layout: projekt
-date: 2021-08-28T13:07:00.000Z
+date: 2021-01-26T13:07:00.000Z
 image: mstlahr.png
 description: Anleitung zur Benutzung der Website und Hintergrunde zum Projekt und den Daten
 ---
 Autor: [David](https://github.com/synolus-david)
-Stand: 08.09.2021
+Stand: 27. Januar 2022
+
+Link: https://transparent.lahr.codes/  
 
 ## Was ist „Meine Stadt Transparent“?
 
@@ -25,6 +27,10 @@ Die Webseite kann man sich als Maske vorstellen, welche Daten über eine [Schnit
 ## Wie benutze ich die Seite?
 
 Das Projekt ist komplett offen entwickelt und kann kostenlos und ohne Anmeldung genutzt werden. Die Seite kann über den Link https://transparent.lahr.codes/ erreicht werden.
+
+## Wie suche ich?
+
+Unter "Suche im Volltext" kann man jeden beliebigen Suchbegriff eingeben z.B. "Glasfaserausbau"
 
 Viel Spaß beim Durchsuchen!
 
