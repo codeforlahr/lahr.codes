@@ -32,7 +32,7 @@ Das Projekt ist komplett offen entwickelt und kann kostenlos und ohne Anmeldung 
 
 Unter "Suche im Volltext" kann man jeden beliebigen Suchbegriff eingeben z.B. "Glasfaserausbau". Das Suchergebniss wird als Liste angezeigt, ähnlich wie man es von gängigen Internet Suchmaschinen kennt. Zudem hat man verschiedene Optionen Suchergebnisse zu filtern und einzuschränken. Eine kleine Übersicht darüber findet man in der untenstehenden Graphik 
 
-image: suchergebnisse.png
+![Suchergebnisse](suchergebnisse.png)
 
 ## Wann brauche ich einen Account und wie lege ich diesen an?
 
