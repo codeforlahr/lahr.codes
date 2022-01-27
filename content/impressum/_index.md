@@ -9,7 +9,7 @@ Urheber von Veröffentlichungen oder Änderungen können daher öffentlich nachv
 Angaben gemäß § 5 TMG
 
 Lucas Steinmann  
-Am Kirchberg 10 
+Am Kirchberg 10  
 77933 Lahr
 
 Vertreten durch:  
